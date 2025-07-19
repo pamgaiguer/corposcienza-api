@@ -1,2 +1,2 @@
 # corposcienza-api
-api para o projeto CorpoScienza
+corposcienza-api
