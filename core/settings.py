@@ -49,11 +49,13 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'drf_spectacular',
     'django_filters',
+    'drf_yasg',
 
     #CORS
     'corsheaders',
 
-    #aplicativos no projeto
+    # aplicativos no projeto
+    'apps.pacientes',
 ]
 
 MIDDLEWARE = [
