@@ -56,6 +56,9 @@ INSTALLED_APPS = [
 
     # aplicativos no projeto
     'apps.pacientes',
+    'apps.profissional_saude',
+    'apps.endereco',
+    'apps.contato_emergencia',
 ]
 
 MIDDLEWARE = [

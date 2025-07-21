@@ -1,20 +1,14 @@
 from django.contrib import admin
-from .models import Paciente, Endereco, ContatoEmergencia, Financeiro
+from .models import Paciente, Financeiro
+from apps.endereco.models import Endereco
+from apps.contato_emergencia.models import ContatoEmergencia
 
 @admin.register(Paciente)
 class PacienteAdmin(admin.ModelAdmin):
-    list_display = ['nome', 'cpf', 'email']
-    search_fields = ['nome', 'cpf']
-
-@admin.register(Endereco)
-class EnderecoAdmin(admin.ModelAdmin):
-    list_display = ['paciente', 'cidade', 'estado']
-    search_fields = ['paciente__nome', 'cidade']
-
-@admin.register(ContatoEmergencia)
-class ContatoEmergenciaAdmin(admin.ModelAdmin):
-    list_display = ['nome', 'telefone', 'paciente']
-    search_fields = ['nome', 'paciente__nome']
+    list_display = ('nome', 'cpf', 'data_nascimento', 'sexo_biologico')
+    search_fields = ('nome', 'cpf')
+    list_filter = ('sexo_biologico',)
+    autocomplete_fields = ('endereco', 'contato_emergencia')
 
 @admin.register(Financeiro)
 class FinanceiroAdmin(admin.ModelAdmin):
