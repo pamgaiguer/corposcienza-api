@@ -5,8 +5,7 @@ from apps.contato_emergencia.models import ContatoEmergencia
 class ProfissionalSaude(models.Model):
     cpf = models.CharField(max_length=14, unique=True)
     nome = models.CharField(max_length=255)
-    endereco = models.ForeignKey(Endereco, on_delete=models.SET_NULL, null=True)
-    contato_emergencia = models.ForeignKey(ContatoEmergencia, on_delete=models.SET_NULL, null=True)
+
 
     SEXO_BIOLOGICO_CHOICES = [
         ('M', 'Masculino'),
@@ -21,6 +20,9 @@ class ProfissionalSaude(models.Model):
     especialidade = models.CharField(max_length=100)
     numero_registro = models.CharField(max_length=50)
 
+
+    endereco = models.ForeignKey(Endereco, on_delete=models.SET_NULL, null=True)
+    contato_emergencia = models.ForeignKey(ContatoEmergencia, on_delete=models.SET_NULL, null=True)
     endereco = models.OneToOneField(Endereco, on_delete=models.CASCADE, related_name='profissional')
     contato_emergencia = models.OneToOneField(ContatoEmergencia, on_delete=models.CASCADE, related_name='profissional')
 
