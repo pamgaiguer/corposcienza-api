@@ -32,6 +32,8 @@ ALLOWED_HOSTS = [
     "localhost:8000",
     "127.0.0.1",
     "127.0.0.1:8000",
+    "srv919503.hstgr.cloud",
+    "srv919503.hstgr.cloud:3001"
 ]
 
 # Application definition
