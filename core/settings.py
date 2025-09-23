@@ -33,7 +33,9 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "127.0.0.1:8000",
     "srv919503.hstgr.cloud",
-    "srv919503.hstgr.cloud:3001"
+    "srv919503.hstgr.cloud:3001",
+    "corposcienza.com.br",
+    "www.corposcienza.com.br",
 ]
 
 # Application definition
