@@ -3,9 +3,6 @@
 # Garante que está no diretório certo
 cd /opt/corposcienza/api
 
-#adicionando o nome a aplicação da api
-# pm2 start ./start.sh --name "corposcienza-api"
-
 # Ativa o ambiente virtual
 source venv/bin/activate
 
