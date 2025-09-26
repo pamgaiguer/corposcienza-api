@@ -28,14 +28,15 @@ SECRET_KEY = 'django-insecure-i&uqfpi(2+u$^gn7ehp1t0c)m*yg&c^iecpm%zfb6^ley^95-l
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "localhost",
-    "localhost:8000",
-    "127.0.0.1",
-    "127.0.0.1:8000",
-    "srv919503.hstgr.cloud",
-    "srv919503.hstgr.cloud:3001",
+    # Domínios Públicos (Nomes que o Nginx envia)
     "corposcienza.com.br",
     "www.corposcienza.com.br",
+    "api.corposcienza.com.br",
+    
+    # Endereços/Hostnames do Servidor (Úteis para Debug)
+    "srv919503.hstgr.cloud",
+    "127.0.0.1",
+    "localhost",
 ]
 
 # Application definition
