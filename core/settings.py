@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     #bibliotecas de terceiros
     'rest_framework',
     'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
     'drf_spectacular',
     'django_filters',
     'drf_yasg',
@@ -165,11 +166,13 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',  # <— só pra dev
     ),
     # Alterado para permitir acesso público por padrão
     # Cada view deve definir explicitamente suas próprias permissões quando necessário
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.AllowAny',
+        # 'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
@@ -199,8 +202,8 @@ SIMPLE_JWT = {
 # Configurações do CORS
 CORS_ALLOW_ALL_ORIGINS = True  # Em produção, especificar apenas as origens permitidas
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:4200",  # dev local
-    "http://127.0.0.1:4200",  # dev local
+    "http://localhost:3000",  # dev local
+    "http://127.0.0.1:3000",  # dev local
     # "https://colegioienec.vercel.app",  # staging no Vercel
     # "https://colegioienec.com",     # produção
     # "https://www.colegioienec.com", # produção com www
@@ -225,3 +228,23 @@ CORS_ALLOW_HEADERS = [
     'x-csrftoken',
     'x-requested-with',
 ]
+if DEBUG:
+    REST_FRAMEWORK = {
+        "DEFAULT_AUTHENTICATION_CLASSES": (
+            "rest_framework_simplejwt.authentication.JWTAuthentication",
+            "rest_framework.authentication.SessionAuthentication",  # <- para login na UI
+        ),
+        "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+        "DEFAULT_RENDERER_CLASSES": (
+            "rest_framework.renderers.JSONRenderer",
+            "rest_framework.renderers.BrowsableAPIRenderer",        # <- UI navegável
+        ),
+    }
+else:
+    REST_FRAMEWORK = {
+        "DEFAULT_AUTHENTICATION_CLASSES": (
+            "rest_framework_simplejwt.authentication.JWTAuthentication",
+        ),
+        "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+        "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
+    }

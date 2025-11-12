@@ -1,0 +1,12 @@
+{
+    // Confirma que o VS Code usa o venv local
+    "python.defaultInterpreterPath": "./venv/bin/python",
+    
+    // Confirma que o Pylance pode encontrar seus módulos Django em 'apps'
+    "python.analysis.extraPaths": [
+        "./apps"
+    ],
+    
+    // Se o Prettier estiver formatando arquivos Python
+    "editor.defaultFormatter": "ms-python.black-formatter" // Se você usa Black
+}
