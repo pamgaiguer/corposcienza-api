@@ -2,9 +2,11 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 class CustomUser(AbstractUser):
-    nome = models.CharField("Nome completo", max_length=150, blank=True)
-    is_equipe = models.BooleanField("É da equipe?", default=False)
     phone = models.CharField(max_length=20, blank=True)
 
+    @property
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}".strip()
+
     def __str__(self):
-        return self.nome or self.username
+        return self.full_name or self.username

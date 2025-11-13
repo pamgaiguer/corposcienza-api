@@ -15,21 +15,14 @@ from .models import CustomUser
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
 
-    list_display = (
-        "username",
-        "email",
-        "nome",
-        "is_active",
-        "is_equipe",
-        "is_staff",
-        "last_login",
-    )
-    search_fields = ("username", "email", "nome")
-    list_filter = ("is_active", "is_equipe", "is_staff")
+    list_display = ("username", "email", "full_name", "is_staff", "is_active")
+
+    search_fields = ("username", "email")
+    list_filter = ("is_active", "is_staff")
 
     fieldsets = (
         (None, {"fields": ("username", "password")}),
-        ("Informações pessoais", {"fields": ("nome", "email", "phone")}),
+        ("Informações pessoais", {"fields": ("first_name", "last_name", "email", "phone")}),
         (
             "Permissões",
             {
@@ -37,7 +30,6 @@ class CustomUserAdmin(UserAdmin):
                     "is_active",
                     "is_staff",
                     "is_superuser",
-                    "is_equipe",
                     "groups",
                     "user_permissions",
                 )
@@ -55,10 +47,8 @@ class CustomUserAdmin(UserAdmin):
                 "fields": (
                     "username",
                     "email",
-                    "nome",
                     "password1",
                     "password2",
-                    "is_equipe",
                     "is_active",
                     "is_staff",
                 ),

@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from .models import CustomUser
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
@@ -10,3 +11,20 @@ class TokenPairSerializer(serializers.Serializer):
 
 class LogoutSerializer(serializers.Serializer):
     refresh = serializers.CharField()
+
+class UserSerializer(serializers.ModelSerializer):
+    full_name = serializers.ReadOnlyField()
+
+class Meta:
+    model = CustomUser
+    fields = [
+        "id",
+        "username",
+        "email",
+        "first_name",
+        "last_name",
+        "full_name",
+        "phone",
+        "is_active",
+        "is_staff",
+    ]

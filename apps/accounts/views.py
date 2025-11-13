@@ -1,5 +1,5 @@
 from rest_framework.views import APIView
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from drf_spectacular.utils import extend_schema, OpenApiExample
@@ -7,7 +7,7 @@ from drf_spectacular.utils import extend_schema, OpenApiExample
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 
-from .serializers import LoginSerializer, TokenPairSerializer, LogoutSerializer
+from .serializers import LoginSerializer, TokenPairSerializer, LogoutSerializer, UserSerializer
 
 class LoginView(TokenObtainPairView):
     permission_classes = [AllowAny]
@@ -48,3 +48,10 @@ class LogoutView(APIView):
             # já inválido/expirado — responde OK mesmo assim
             pass
         return Response(status=status.HTTP_200_OK)
+    
+class MeView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
