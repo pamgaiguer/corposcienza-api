@@ -24,6 +24,7 @@ ALLOWED_HOSTS = [
     
     # Endereços/Hostnames do Servidor (Úteis para Debug)
     "srv919503.hstgr.cloud",
+    "srv919503.hstgr.cloud:8000",
     "127.0.0.1",
     "localhost",
 ]
